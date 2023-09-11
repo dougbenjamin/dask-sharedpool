@@ -69,7 +69,7 @@ def get_xroot_url(eos_path):
 
 
 class Bnlt3Job(HTCondorJob):
-    config_name = "cern"
+    config_name = "bnlt3"
 
     def __init__(self,
                  scheduler=None,

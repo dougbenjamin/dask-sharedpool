@@ -1,5 +1,5 @@
 jobqueue:
-  cern:
+  bnlt3:
     name: dask-worker
 
     # default JobBatchName
