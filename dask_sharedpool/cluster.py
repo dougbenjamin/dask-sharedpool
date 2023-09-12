@@ -14,12 +14,11 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 def get_free_dask_scheduler_port():
-    openport = None
     for port in range(31000,32000):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             res = sock.connect_ex(('localhost', port))
             if res == 0:
-                yield port
+                return port
 
 def merge(*args):
     # This will merge dicts, but earlier definitions win
