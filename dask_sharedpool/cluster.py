@@ -18,7 +18,7 @@ def get_free_dask_scheduler_port():
     for port in range(31000,32000):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             res = sock.connect_ex(('localhost', port))
-            if res == 0:
+            if res == 111:
                 return port
 
 def merge(*args):
@@ -186,9 +186,12 @@ class Bnlt3Cluster(HTCondorCluster):
         modified["job_extra_directives"] = merge(
             {"MY.SingularityImage": f'"{worker_image}"'} if container_runtime == "singularity" else None,
             {"request_gpus": str(gpus)} if gpus is not None else None,
+            {"+want_gpus": "True"} if gpus is not None else None,
+            {"PeriodicRemove": "(JobStatus == 1 && NumJobStarts > 1) || JobStatus == 5"},
+            {"Requirements": "(IsJupyterSlot =!= True) && (IsIcSlot =!= True)"},
             {"MY.IsDaskWorker": "true"},
             # getenv justified in case of LCG as both sides have to be the same environment
-            {"getenv": "true"},
+            {"GetEnv": "true"},
             # need to set output destination  see how it is done with SDCC batchspawner
             {"output_destination": f"{xroot_url}"} if xroot_url else None,
             {"Output": "worker-$(ClusterId).$(ProcId).out"} if xroot_url else None,
