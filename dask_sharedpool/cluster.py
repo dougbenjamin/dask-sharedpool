@@ -8,6 +8,7 @@ from dask_jobqueue.htcondor import HTCondorJob
 import os
 import re
 import sys
+import socket
 
 
 logger = logging.getLogger(__name__)
