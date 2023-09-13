@@ -9,6 +9,7 @@ import os
 import re
 import sys
 import socket
+from pathlib import Path
 
 
 logger = logging.getLogger(__name__)
@@ -194,10 +195,10 @@ class Bnlt3Cluster(HTCondorCluster):
             {"GetEnv": "True"},
             {"AcctGroup": "group_atlas.tier3"},
             # need to set output destination  see how it is done with SDCC batchspawner
-            {"output_destination": f"{xroot_url}"} if xroot_url else None,
-            {"Output": "worker-$(ClusterId).$(ProcId).out"},
-            {"Error": "worker-$(ClusterId).$(ProcId).err"},
-            {"Log": "worker-$(ClusterId).log"},
+            #{"output_destination": f"{xroot_url}"} if xroot_url else None,
+            {"Output": f"{Path.home()}/worker-$(ClusterId).$(ProcId).out"},
+            {"Error": f"{Path.home()}/worker-$(ClusterId).$(ProcId).err"},
+            {"Log": f"{Path.home()}/worker-$(ClusterId).log"},
             # extra user input
             kwargs.get("job_extra_directives", dask.config.get(f"jobqueue.{cls.config_name}.job_extra_directives")),
             kwargs.get("job_extra", dask.config.get(f"jobqueue.{cls.config_name}.job_extra")),
