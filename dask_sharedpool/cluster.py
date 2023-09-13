@@ -189,10 +189,10 @@ class Bnlt3Cluster(HTCondorCluster):
             {"+want_gpus": "True"} if gpus is not None else None,
             {"PeriodicRemove": "(JobStatus == 1 && NumJobStarts > 1) || JobStatus == 5"},
             {"Requirements": "(IsJupyterSlot =!= True) && (IsIcSlot =!= True)"},
-            {"MY.IsDaskWorker": "true"},
+            {"MY.IsDaskWorker": "True"},
             # getenv justified in case of LCG as both sides have to be the same environment
             {"GetEnv": "true"},
-            {"AcctGroup": "group_atlas.tier3"}
+            {"AcctGroup": "group_atlas.tier3"},
             # need to set output destination  see how it is done with SDCC batchspawner
             {"output_destination": f"{xroot_url}"} if xroot_url else None,
             {"Output": "worker-$(ClusterId).$(ProcId).out"},
