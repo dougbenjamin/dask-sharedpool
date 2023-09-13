@@ -192,6 +192,7 @@ class Bnlt3Cluster(HTCondorCluster):
             {"MY.IsDaskWorker": "true"},
             # getenv justified in case of LCG as both sides have to be the same environment
             {"GetEnv": "true"},
+            {"AcctGroup": "group_atlas.tier3"}
             # need to set output destination  see how it is done with SDCC batchspawner
             {"output_destination": f"{xroot_url}"} if xroot_url else None,
             {"Output": "worker-$(ClusterId).$(ProcId).out"} if xroot_url else None,

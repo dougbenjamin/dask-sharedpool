@@ -29,7 +29,7 @@ jobqueue:
 
     scheduler-options: {}
 
-    death-timeout: 60
+    death-timeout: 300
 
     local-directory: "/tmp/"
 
@@ -39,6 +39,7 @@ jobqueue:
 
     shared_temp_directory: null
 
+    worker-command: ['/u0b/software/jupyter/bin/dask_worker_spawn_atlas_test.py']
     worker_extra_args: []
 
     job_script_prologue: []
