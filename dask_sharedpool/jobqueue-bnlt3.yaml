@@ -39,7 +39,7 @@ jobqueue:
 
     shared_temp_directory: null
 
-    worker-command: ['/u0b/software/jupyter/bin/dask_worker_spawn_atlas_test.py']
+    worker_command: ['/u0b/software/jupyter/bin/dask_worker_spawn_atlas_test.py']
     
     worker_extra_args: []
 
