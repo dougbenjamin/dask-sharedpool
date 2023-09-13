@@ -33,6 +33,8 @@ jobqueue:
 
     local-directory: "/tmp/"
 
+    shebang: ""
+
     interface: null
 
     shared_temp_directory: null
