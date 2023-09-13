@@ -185,7 +185,7 @@ class Bnlt3Cluster(HTCondorCluster):
         xroot_url = get_xroot_url(modified["log_directory"]) if logdir and modified["log_directory"].startswith("/eos/") else None
 
         modified["job_extra_directives"] = merge(
-            #{"MY.SingularityImage": f'"{worker_image}"'} if container_runtime == "singularity" else None,
+            {"MY.SingularityImage": f'"{worker_image}"'} if container_runtime == "singularity" else None,
             {"request_gpus": str(gpus)} if gpus is not None else None,
             {"+want_gpus": "True"} if gpus is not None else None,
             {"PeriodicRemove": "(JobStatus == 1 && NumJobStarts > 1) || JobStatus == 5"},
