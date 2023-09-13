@@ -33,8 +33,6 @@ jobqueue:
 
     local-directory: "/tmp/"
 
-    shebang: "#!/usr/bin/env bash"
-
     interface: null
 
     shared_temp_directory: null
