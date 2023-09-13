@@ -33,7 +33,7 @@ jobqueue:
 
     local-directory: "/tmp/"
 
-    shebang: ""
+    shebang: " "
 
     interface: null
 
