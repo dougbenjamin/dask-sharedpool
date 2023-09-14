@@ -189,7 +189,7 @@ class Bnlt3Cluster(HTCondorCluster):
             {"request_gpus": str(gpus)} if gpus is not None else None,
             {"+want_gpus": "True"} if gpus is not None else None,
             {"PeriodicRemove": "(JobStatus == 1 && NumJobStarts > 1) || JobStatus == 5"},
-            {"Requirements": "(IsJupyterSlot =!= True) && (IsIcSlot =!= True)"},
+            {"Requirements": "(IsJupyterSlot =!= True) && (IsIcSlot =!= True) && Machine=='spool0805.sdcc.bnl.gov'"},
             {"MY.IsDaskWorker": "True"},
             # getenv justified in case of LCG as both sides have to be the same environment
             {"GetEnv": "True"},
