@@ -206,9 +206,9 @@ class Bnlt3Cluster(HTCondorCluster):
         )
 
         submit_command_extra = kwargs.get("submit_command_extra", [])
-        if "-spool" not in submit_command_extra:
-            submit_command_extra.append('-spool')
-            modified["submit_command_extra"] = submit_command_extra
+        #if "-spool" not in submit_command_extra:
+        #    submit_command_extra.append('-spool')
+        #    modified["submit_command_extra"] = submit_command_extra
 
         modified["worker_extra_args"] = [
                 *kwargs.get("worker_extra_args", dask.config.get(f"jobqueue.{cls.config_name}.worker_extra_args")),
