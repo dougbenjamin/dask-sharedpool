@@ -189,7 +189,7 @@ class Bnlt3Cluster(HTCondorCluster):
             {"request_gpus": str(gpus)} if gpus is not None else None,
             {"+want_gpus": "True"} if gpus is not None else None,
             {"PeriodicRemove": "(JobStatus == 1 && NumJobStarts > 1) || JobStatus == 5"},
-            {"Requirements": "(IsJupyterSlot =!= True) && (IsIcSlot =!= True) && Machine=='spool0805.sdcc.bnl.gov'"},
+            {"Requirements": '(IsJupyterSlot =!= True) && (IsIcSlot =!= True) && Machine=="spool0805.sdcc.bnl.gov"'},
             {"MY.IsDaskWorker": "True"},
             # getenv justified in case of LCG as both sides have to be the same environment
             {"GetEnv": "True"},
@@ -203,8 +203,6 @@ class Bnlt3Cluster(HTCondorCluster):
             kwargs.get("job_extra_directives", dask.config.get(f"jobqueue.{cls.config_name}.job_extra_directives")),
             kwargs.get("job_extra", dask.config.get(f"jobqueue.{cls.config_name}.job_extra")),
             {"JobBatchName": f'"{batch_name or dask.config.get(f"jobqueue.{cls.config_name}.batch-name")}"'},
-            # never transfer files
-            {"transfer_output_files": '""'}
         )
 
         submit_command_extra = kwargs.get("submit_command_extra", [])
