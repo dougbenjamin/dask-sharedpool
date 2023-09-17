@@ -194,6 +194,8 @@ class Bnlt3Cluster(HTCondorCluster):
             # getenv justified in case of LCG as both sides have to be the same environment
             {"GetEnv": "True"},
             {"AcctGroup": "group_atlas.tier3"},
+            # add singularity BIND mounts
+            {"SINGULARITY_BIND_EXPR": "/u0b/software /cvmfs /direct/u0b/software /usatlas/atlas01 /etc/condor /direct/condor"},
             # need to set output destination  see how it is done with SDCC batchspawner
             #{"output_destination": f"{xroot_url}"} if xroot_url else None,
             {"Output": f"{Path.home()}/worker-$(ClusterId).$(ProcId).out"},
