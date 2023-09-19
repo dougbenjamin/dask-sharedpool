@@ -198,9 +198,9 @@ class Bnlt3Cluster(HTCondorCluster):
             {"SINGULARITY_BIND_EXPR": "/u0b/software /cvmfs /direct/u0b/software /usatlas/atlas01 /etc/condor /direct/condor"},
             # need to set output destination  see how it is done with SDCC batchspawner
             #{"output_destination": f"{xroot_url}"} if xroot_url else None,
-            {"Output": f"{Path.home()}/worker-$(ClusterId).$(ProcId).out"},
-            {"Error": f"{Path.home()}/worker-$(ClusterId).$(ProcId).err"},
-            {"Log": f"{Path.home()}/worker-$(ClusterId).log"},
+            {"Output": f"{Path.home()}/.dask-worker-$(ClusterId).$(ProcId).out"},
+            {"Error": f"{Path.home()}/.dask-worker-$(ClusterId).$(ProcId).err"},
+            {"Log": f"{Path.home()}/.dask-worker-$(ClusterId).$(ProcId).log"},
             # extra user input
             kwargs.get("job_extra_directives", dask.config.get(f"jobqueue.{cls.config_name}.job_extra_directives")),
             kwargs.get("job_extra", dask.config.get(f"jobqueue.{cls.config_name}.job_extra")),
