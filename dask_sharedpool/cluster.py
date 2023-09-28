@@ -22,6 +22,14 @@ def get_free_dask_scheduler_port():
             if res == 111:
                 return port
 
+def get_free_dask_dashboard_port():
+    for port in range(41000,42000):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            res = sock.connect_ex(('localhost', port))
+            if res == 111:
+                return port
+
+
 def merge(*args):
     # This will merge dicts, but earlier definitions win
     return dict(ChainMap(*filter(None, args)))
